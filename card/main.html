@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Card</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,500;0,700;0,900;1,100;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,500;0,700;0,900;1,100;1,400;1,500;1,700;1,900&family=Sen:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.google.com/specimen/Space+Grotesk" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto:ital,wght@0,100;0,300;0,500;0,700;0,900;1,100;1,400;1,500;1,700;1,900&family=Sen:wght@400;700;800&display=swap" rel="stylesheet">
+   
+</head>
+<body>
+    <div class="image_left">
+          <img src="bg-main-desktop.png">
+        </div>
+        <div class="card_number">
+             <img class="front_img" src="bg-card-front.png">
+                <p  class="acc_number"></p>
+                <p  class="acc_name"></p>
+                <p  class="acc_month"></p>
+                <p class="back_slash"> / </p>
+                <p  class="acc_year"></p>
+        </div>
+    <div class="back_card">
+            <img class="back_img" src="bg-card-back.png">
+            <p  class="cvc_number"></p>
+</div>
+
+    </div>
+<div class="form_field">
+
+    <form class="form" id="form_close">
+        
+    <div class="cardid">
+       <div class="input-control">
+        <label class="name" >CARDHOLDER NAME</label><br> 
+        <input type="text" id="cardholder" class="namebox" placeholder="e.g. Sydney McCarthy" ><br>
+        <small>Error Message</small>
+        </div>
+    </div>
+    <div class="cardnumber">
+        <div class="input-control">
+        <label class="name" >CARD NUMBER</label><br>
+        <input type="text" id="cardnumber" class="cardbox" placeholder="e.g. 0000 0000 0000 0000 0000"><br>
+        <small>Error Message</small>
+    </div>
+    </div>
+    <div class="dateid"> 
+        <div class="input-control">
+        <label class="name" style="padding-left:-70% ;font: white; " >EXP.DATE(MM/YY)</label><br>
+        <div class="dates">
+        <input type="text" id="month" class="month" placeholder="MM" style="padding-left:-70% ;">
+        <small>Error Message</small>
+        <input type="text" id="year" class="year" placeholder="YY">
+        
+        <label class="cvc">CVC</label>
+        <input type="text" id="cvc" class="number1" maxlength="3" placeholder="CVC">
+        <small>Error message  </small>
+        
+        </div>
+    </div>
+    </div><br>
+        <button class="button"  style="font: white;" onclick="openPopup()">Confirm</button>
+    </div>
+
+</form>
+
+
+<div class="popup" id="popup" >
+    <h3 class="thankyou"> THANK YOU! </h3>
+    <P class="detail">We've added your card details</P>
+<button class="continue"> Continue</button>
+</div>
+
+
+
+<script>
+let popup = document.getElementById("popup");
+
+function openPopup(){
+    popup.classList.add("open-popup");
+}
+document.querySelector('.cardbox').oninput = () =>{
+    document.querySelector('.acc_number').innerText = document.querySelector('.cardbox').value;
+}
+document.querySelector('.namebox').oninput = () =>{
+    document.querySelector('.acc_name').innerText = document.querySelector('.namebox').value;
+}
+document.querySelector('.month').oninput = () =>{
+    document.querySelector('.acc_month').innerText = document.querySelector('.month').value;
+}
+document.querySelector('.year').oninput = () =>{
+    document.querySelector('.acc_year').innerText = document.querySelector('.year').value;
+}
+document.querySelector('.number1').oninput = () =>{
+    document.querySelector('.cvc_number').innerText = document.querySelector('.number1').value;
+}
+
+const setError = (element, message) =>{
+    const inputcontrol = element.parentElement;
+    const errorDisplay = inputControl.querySelector('.error');
+
+    errorDisplay.innerText = message;
+    inputcontrol.classList.add('error');
+    inputcontrol.classList.remove('success');
+}
+const setSuccess = element =>{
+    const inputControl= element.parentElement;
+    const errorDisplay = inputDisplay.querySelector('.error');
+
+    errorDisplay.innerText = '';
+    inputcontrol.classList.add('error');
+    inputcontrol.classList.remove('success');
+    
+};
+
+
+
+
+const form =document.getElementById('form');
+const cardholder =document.getElementById('cardholder');
+const cardnumber =document.getElementById('cardnumber');
+const month =document.getElementById('month');
+const year =document.getElementById('year');
+const cvc =document.getElementById('cvc');
+
+
+
+const isCardNumberValid = cardnumber =>{
+    
+}
+
+
+const validateInputs = () =>{
+    const cardholder = cardholder.value.trim();
+    const cardnumber = cardnumber.value.trim();
+    const month = month.value.trim();
+    const year = year.value.trim();
+    const cvc = cvc.value.trim();
+
+if(cardholder === ''){
+    setError(cardholder, 'Name is required');
+}else{
+
+    setSuccess(cardholder);
+}
+
+if(cardnumber === ''){
+    setError(cardnumber, 'CardNumber is required');
+}else{
+
+    setSuccess(cardnumber);
+}
+
+
+};
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+</body>
+</html>
